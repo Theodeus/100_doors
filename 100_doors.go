@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-    var doorArray [101]bool
+    var doorArray [100]bool
     doors := doorArray[:]
     for i := 1; i <= len(doors); i++ {
-        for y := 0; y < len(doors); y = y + i {
+        for y := i - 1; y < len(doors); y += i {
             doors[y] = !doors[y]
         }
     }
@@ -17,14 +17,14 @@ func main() {
         return t
     })
 
-    fmt.Printf("closed: ")
-    for _, v := range closed[1:] {
-        fmt.Printf("%d ", v)
+    fmt.Printf("open: ")
+    for _, v := range open[:] {
+        fmt.Printf("%d ", v + 1)
     }
-    fmt.Printf("\nopen: ")
+    fmt.Printf("\nclosed: ")
     defer fmt.Printf("\n")
-    for _, v := range open[1:] {
-        fmt.Printf("%d ", v)
+    for _, v := range closed[:] {
+        fmt.Printf("%d ", v + 1)
     }
 }
 
